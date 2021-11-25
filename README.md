@@ -1,19 +1,18 @@
-# AWS SAA-C02 Study Guide
-This study guide will help you pass the newer AWS Certified Solutions Architect - Associate exam. Ideally, you should reference this guide while working through the following material:
-
-  1. Stephane Maarek's <a href="https://links.datacumulus.com/aws-certified-sa-associate-coupon">Ultimate AWS Certified Solutions Architect Associate 2021 course</a> (permanent discount available through this link) or A Cloud Guru's <a href="https://acloud.guru/learn/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect Associate SAA-C02 course</a>
-  2. The FAQs for the most critical services, included in the recommended reading list below
-  3. Tutorials Dojo's <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-amazon-practice-exams-saa-c02/">AWS Certified Solutions Architect Associate Practice Exams </a>
-  4. Andrew Brown's <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020 (PASS THE EXAM!) | Ad-Free Course
+# AWS SAA-C02 Study Guide (한글 번역본)
+이 학습 가이드는 최신 AWS Certified Solutions Architect - Associate 시험에 합격하는 데 도움이 될 것 입니다. 시험을 준비할 때 이 가이드를 참조하는 것이 좋습니다. :
+  1. Stephane Maarek 의 <a href="https://links.datacumulus.com/aws-certified-sa-associate-coupon">Ultimate AWS Certified Solutions Architect Associate 2021 course</a> (permanent discount available through this link) or A Cloud Guru's <a href="https://acloud.guru/learn/aws-certified-solutions-architect-associate">AWS Certified Solutions Architect Associate SAA-C02 course</a>
+  2. 아래 권장 항목을 포함한 대부분의 서비스의 FAQ 문서는 매우 중요합니다.
+  3. Dojo의 튜토리얼 <a href="https://www.udemy.com/course/aws-certified-solutions-architect-associate-amazon-practice-exams-saa-c02/">AWS Certified Solutions Architect Associate Practice Exams </a>
+  4. Andrew Brown의 <a href="https://www.youtube.com/watch?v=Ia-UEYYR44s">AWS Certified Solutions Architect - Associate 2020 (PASS THE EXAM!) | Ad-Free Course
 </a> 
 
 *Notes*:
-If at any point you find yourself feeling uncertain of your progress and in need of more time, you can postpone your AWS exam date. Be sure to also keep up with the ongoing discussions in <a href="https://reddit.com/r/AWSCertifications/">r/AWSCertifications</a> as you will find relevant exam tips, studying material, and advice from other exam takers. Before experimenting with AWS, it's very important to be sure that you know what is <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">free</a> and what isn't. Relevant Free Tier FAQs can be found <a href="https://aws.amazon.com/free/free-tier-faqs/">here</a>. Finally, Udemy often has their courses go on sale from time to time. It might be worth waiting to purchase either the Tutorial Dojo practice exam or Stephane Maarek's course depending on how urgently you need the content.
+언제든 자신의 진도가 불확실하고 시간이 더 필요하다고 느낀다면, AWS 시험을 연기할 수 있습니다. 관련 시험 요령, 학습 자료, 다른 수험생들의 조언이 있으니 <a href="https://reddit.com/r/AWSCertifications/">r/AWSCertifications</a> 에서 진행 중인 레딧 토론도 참고하세요. 관련된 시험 팁, 공부 자료, 그리고 다른 수험생들의 조언을 찾을 수 있습니다. AWS로 실습을 진행하기 전에, 어떤 서비스가  <a href="https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc">무료</a>인지 아닌지 판단하는 것은 매우 중요합니다.프리티어와 관련한 FAQ는 <a href="https://aws.amazon.com/free/free-tier-faqs/">이곳</a>에서 확인할 수 있습니다. 마지막으로, Udemy는 종종 강의 타임세일을 진행합니다. 강의가 얼마나 급하게 필요한지에 따라 Tutorial Dojo 연습 시험 또는 Stephane Marek의 과정을 시기에 맞춰 구매하는 것이 좋을 수 있습니다.
 
 
 
 ## Table of Contents
-1. <a href="#introduction">Introduction</a>
+1. <a href="#introduction">소개</a>
 
 2. <a href="#identity-access-management-iam">Identity Access Management (IAM)</a>
 
@@ -85,57 +84,57 @@ If at any point you find yourself feeling uncertain of your progress and in need
 
 
 
-## Introduction
+## 소개
 
-<a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**The official AWS Solutions Architect - Associate (SAA-C02) exam guide**</a>
+<a href="https://d1.awsstatic.com/training-and-certification/docs-sa-assoc/AWS-Certified-Solutions-Architect-Associate-Exam-Guide_v1.1_2019_08_27_FINAL.pdf">**공식 AWS Solutions Architect - Associate (SAA-C02) 시험 가이드**</a>
 
 ### Exam Content Breakdown:
 ![Screen Shot 2020-06-05 at 2 49 08 PM](https://user-images.githubusercontent.com/13093517/83912374-c2b87900-a73b-11ea-9691-b38383b43ff9.png)
 
-*Domain 1: Design Resilient Architectures*
+*영역 1: 복원력을 갖춘 아키텍처 설계*
 
-  1.1 - Design a multi-tier architecture solution
+  1.1 - 멀티 티어 아키텍처 솔루션 설계
 
-  1.2 - Design highly available and/or fault-tolerant architectures
+  1.2 - 고가용성 및/또는 내결함성 아키텍처 설계
 
-  1.3 - Design decoupling mechanisms using AWS services
+  1.3 - AWS 서비스를 사용하여 결합 해제 메커니즘 설계
 
-  1.4 - Choose appropriate resilient storage
-
-
-*Domain 2: Design High-Performing Architectures*
-
-  2.1 - Identify elastic and scalable **compute** solutions for a workload
-
-  2.2 - Select high-performing and scalable **storage** solutions for a workload
-
-  2.3 - Select high-performing **networking** solutions for a workload
-
-  2.4 - Choose high-performing **database** solutions for a workload
+  1.4 - 적절한 복원력을 갖춘 스토리지 선택
 
 
-*Domain 3: Design Secure Applications and Architectures*
+*영역 2: 고성능 아키텍처 설계*
 
-  3.1 - Design secure access to AWS resources
+  2.1 - 워크로드를 위한 탄력적이고 확장 가능한 **컴퓨팅** 솔루션 식별
 
-  3.2 - Design secure application tiers
+  2.2 - 워크로드를 위한 확장 가능한 고성능 **스토리지** 솔루션 선택
 
-  3.3 - Select appropriate data security options
+  2.3 - 워크로드를 위한 고성능 **네트워킹** 솔루션 선택
 
-
-*Domain 4: Design Cost-Optimized Architectures*
-
-  4.1 - Identify cost-effective **storage** solutions
-
-  4.2 - Identify cost-effective **compute** and **database** services
-
-  4.3 - Design cost-optimized **network** architectures
+  2.4 - 워크로드를 위한 고성능 **데이터베이스** 솔루션 선택
 
 
+*영역 3: 안전한 애플리케이션 및 아키텍처 설계*
 
-### Recommended Reading:
+  3.1 - AWS 리소스에 대한 보안 액세스 설계
 
-You can cover a lot of ground by skimming over what you already know or what you can infer to be true. In particular, read the first sentence of each paragraph and if you have no uncertainty about what is being said in that sentence, move on to the first sentence of the next paragraph. Take notes whenever necessary.
+  3.2 - 보안 애플리케이션 계층 설계
+
+  3.3 - 적절한 데이터 보안 옵션 선택
+
+
+*영역 4: 비용에 최적화된 아키텍처 설계*
+
+  4.1 - 비용 효율적인 **스토리지** 솔루션 식별
+
+  4.2 - 비용 효율적인 **컴퓨팅** 및 **데이터베이스** 서비스 식별
+
+  4.3 - 비용에 최적화된 **네트워크** 아키텍처 설계
+
+
+
+### 읽을거리:
+
+여러분들이 이미 알고 있는 것 또는 여러분이 사실이라고 추론할 수 있는 것을 예측하며 훑어봄으로써 많은 것을 얻을 수 있습니다. 각 단락의 첫 문장을 읽고 그 문장에서 어떤 말이 나올지 확신이 없다면 다음 단락의 첫 문장으로 넘어가면서 연습하면 됩니다. 필요할 때마다 메모하면서요.
 
   1. <a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/wellarchitected-framework.pdf">AWS Well-Architected Framework</a>
 
@@ -169,115 +168,117 @@ You can cover a lot of ground by skimming over what you already know or what you
 
 ## Identity Access Management (IAM)
 
-### IAM Simplified:
+### IAM 요약:
 
-IAM offers a centralized hub of control within AWS and integrates with all other AWS Services. IAM comes with the ability to share access at various levels of permission and it supports the ability to use identity federation (the process of delegating authentication to a trusted external party like Facebook or Google) for temporary or limited access. IAM comes with MFA support and allows you to set up custom password rotation policy across your entire organization. 
-It is also PCI DSS compliant i.e. payment card industry data security standard. (passes government mandated credit card security regulations).
+IAM은 AWS 내에서 중앙 집중식 제어 허브를 제공하며 다른 모든 AWS 서비스와 통합됩니다. IAM은 다양한 수준의 권한으로 액세스를 공유할 수 있는 기능이 있으며 임시 또는 제한된 액세스를 위해 웹 자격 증명 공급자(Facebook이나 Google과 같은 신뢰할 수 있는 외부 당사자에게 인증을 위임하는 프로세스)를 사용할 수 있는 기능을 지원합니다. IAM은 MFA 지원을 통해 조직 전체에 걸쳐 사용자 지정 암호 순환 정책을 설정할 수 있습니다.
+또한 PCI DSS를 준수하는 결제 카드 업계 데이터 보안 표준입니다(정부 의무 신용카드 보안 규정 통과).
 
-### IAM Entities:
 
-**Users** - any individual end user such as an employee, system architect, CTO, etc.
+### IAM 구성:
 
-**Groups** - any collection of similar people with shared permissions such as system administrators, HR employees, finance teams, etc. Each user within their specified group will inherit the permissions set for the group.
+**사용자** - 직원, 시스템 설계자, CTO 등과 같은 모든 개별 최종 사용자.
 
-**Roles** - any software service that needs to be granted permissions to do its job, e.g- AWS Lambda needing write permissions to S3 or a fleet of EC2 instances needing read permissions from a RDS MySQL database.
+**그룹** - 시스템 관리자, HR 직원, 재무 팀 등과 같이 공유 권한을 가진 사람들의 모음. 지정된 그룹 내의 각 사용자는 그룹에 대해 설정된 사용 권한을 상속하게 됩니다.
 
-**Policies** - the documented rule sets that are applied to grant or limit access. In order for users, groups, or roles to properly set permissions, they use policies. Policies are written in JSON and you can either use custom policies for your specific needs or use the default policies set by AWS.
+**역할** - S3에 대한 쓰기 권한이 필요한 AWS Lambda 또는 RDS MySQL 데이터베이스의 읽기 권한이 필요한 EC2 인스턴스 등 해당 작업을 수행하기 위해 사용 권한을 부여해야 하는 모든 소프트웨어 서비스.
+
+**정책** - 액세스 권한 부여 또는 제한에 적용되는 문서화된 규칙들. 사용자, 그룹 또는 역할이 사용 권한을 올바르게 설정할 수 있도록 정책을 사용합니다. 정책은 JSON으로 작성되며 특정 요구에 맞는 사용자 지정 정책을 사용하거나 AWS에서 설정한 기본 정책을 사용할 수 있습니다.
 
 ![Screen Shot 2020-06-06 at 10 49 48 PM](https://user-images.githubusercontent.com/13093517/83959193-11533980-a848-11ea-9d03-d8133e0aaa86.png)
 
-IAM Policies are separated from the other entities above because they are not an IAM Identity. Instead, they are attached to IAM Identities so that the IAM Identity in question can perform its necessary function.
+IAM 정책은 IAM Identity가 아니기 때문에 위의 다른 요소들과 구분됩니다. 대신 해당 IAM Identity가 필요한 기능을 수행할 수 있도록 IAM Identity에 부착됩니다.
 
-### IAM Key Details:
+### IAM Key 세부요소:
 
-- IAM is a global AWS services that is not limited by regions. Any user, group, role or policy is accessible globally.
+- IAM은 리전에 국한되지 않는 글로벌 AWS 서비스입니다. 모든 사용자, 그룹, 역할 또는 정책에 전체적으로 액세스할 수 있습니다.
 
-- The root account with complete admin access is the account used to sign up for AWS. Therefore, the email address used to create the AWS account for use should probably be the official company email address.
+- 완전한 관리자 권한을 가진 루트 계정은 AWS에 가입하는 데 사용되는 계정입니다. 따라서 AWS 계정을 만드는 데 사용되는 이메일 주소는 아마도 회사의 공식 이메일 주소일 것입니다.
 
-- New users have no permissions when their accounts are first created. This is a secure way of delegating access as permissions must be intentionally granted.
+- 계정을 처음 만들 때 새 사용자는 권한이 없습니다. 이 방법은 권한을 의도적으로 부여해야 하므로 액세스를 위임하는 안전한 방법입니다.
 
-- When joining the AWS ecosystem for the first time, new users are supplied an access key ID and a secret access key ID when you grant them programmatic access. These are created just once specifically for the new user to join, so if they are lost simply generate a new access key ID and a new secret access key ID. Access keys are only used for the AWS CLI and SDK so you cannot use them to access the console.
+- AWS 생태계에 처음 가입하면 새 사용자에게 액세스 키 ID와 비밀 액세스 키 ID가 제공됩니다. 새 사용자가 가입할 수 있도록 특별히 한 번만 작성되므로, 분실된 경우 새 액세스 키 ID와 새 비밀 액세스 키 ID를 새로 생성해야만 합니다. 액세스 키는 AWS CLI 및 SDK에만 사용되므로 콘솔에 액세스하는 데 사용할 수 없습니다.
 
-- When creating your AWS account, you may have an existing identity provider internal to your company that offers Single Sign On (SSO). If this is the case, it is useful, efficient, and entirely possible to reuse your existing identities on AWS. To do this, you let an IAM role be assumed by one of the Active Directories. This is because the IAM ID Federation feature allows an external service to have the ability to assume an IAM role.
+- AWS 계정을 만들 때 SSO(Single Sign On)를 제공하는 기존 ID 공급자가 회사 내부에 있을 수 있습니다. 이러한 경우 AWS에서 기존 ID를 재사용하는 것이 유용하고 효율적입니다. 이를 통해 활성화된 디렉토리 중 하나에서 IAM 역할을 맡게 됩니다. 그 이유는 IAM ID Federation 기능을 통해 외부 서비스에서 IAM 역할을 맡을 수 있기 때문입니다.
 
-- IAM Roles can be assigned to a service, such as an EC2 instance, prior to its first use/creation or after its been in used/created. You can change permissions as many times as you need. This can all be done by using both the AWS console and the AWS command line tools.
+- IAM 역할은 처음 사용/생성하기 전 또는 사용/생성 후 EC2 인스턴스와 같은 서비스에 할당할 수 있습니다. 또한 필요한 만큼 사용 권한을 변경할 수 있습니다. 이 모든 작업은 AWS 콘솔과 AWS 명령줄 도구(CLI)를 사용하여 수행할 수 있습니다.
 
-- You cannot nest IAM Groups. Individual IAM users can belong to multiple groups, but creating subgroups so that one IAM Group is embedded inside of another IAM Group is not possible.
+- IAM 그룹을 중첩할 수 없습니다. 개별 IAM 사용자는 여러 그룹에 속할 수 있지만, 한 IAM 그룹이 다른 IAM 그룹에 포함되도록 하위 그룹을 만들 수는 없습니다.
 
-- With IAM Policies, you can easily add tags that help define which resources are accessible by whom. These tags are then used to control access via a particular IAM policy. For example, production and development EC2 instances might be tagged as such. This would ensure that people who should only be able to access development instances cannot access production instances.  
+- IAM 정책을 사용하면 사용자가 액세스할 수 있는 리소스를 정의하는 데 도움이 되는 태그를 쉽게 추가할 수 있습니다. 그런 다음 이러한 태그를 사용하여 특정 IAM 정책을 통한 액세스를 제어할 수 있습니다. 예를 들어, EC2 인스턴스에는 생산 및 개발 태그가 지정될 수 있습니다. 이렇게 하면 개발 인스턴스에만 액세스할 수 있어야 하는 사람들이 프로덕션 인스턴스에 액세스할 수 없게 됩니다.
 
-### Priority Levels in IAM:
-- **Explicit Deny**: Denies access to a particular resource and this ruling cannot be overruled.
 
-- **Explicit Allow**: Allows access to a particular resource so long as there is not an associated Explicit Deny.
+### IAM에서의 우선순위:
+- **명시적 거부**: 특정 리소스에 대한 액세스를 거부하며 이는 취소될 수 없습니다.
 
-- **Default Deny (or Implicit Deny)**: IAM identities start off with no resource access. Access instead must be granted.
+- **명시적 허용**: 연결된 명시적 거부가 없는 한, 특정 리소스에 대한 액세스를 허용합니다.
+
+- **기본적 거부(또는 암시적 거부)**: IAM identities는 리소스 액세스 없이 시작됩니다. 대신 접근 권한을 부여해야 합니다.
 
 
 ## Simple Storage Service (S3)
 
-### S3 Simplified:
-S3 provides developers and IT teams with secure, durable, and highly-scalable object storage. Object storage, as opposed to block storage, is a general term that refers to data composed of three things:
+### S3 요약:
+S3는 개발자와 IT 팀에 안전하고 내구성이 뛰어나며 확장성이 뛰어난 객체 스토리지를 제공합니다. 블록 스토리지와 달리 객체 스토리지는 다음과 같은 세 가지 요소로 구성된 데이터를 가리키는 일반적인 용어입니다.
 
-  1.) the data that you want to store
+  1.) 저장하길 원하는 데이터
 
-  2.) an expandable amount of metadata
+  2.) 확장 가능한 메타데이터 양
 
-  3.) a unique identifier so that the data can be retrieved 
+  3.) 데이터를 검색할 수 있는 고유 식별자
 
-This makes it a perfect candidate to host files or directories and a poor candidate to host databases or operating systems. The following table highlights key differences between object and block storage:
+따라서 파일이나 디렉토리를 호스팅하기에 완벽한 후보이지만 데이터베이스나 운영 체제를 호스팅하기에는 적합하지 않습니다. 다음 표에서는 개체 스토리지와 블록 스토리지의 주요 차이점을 설명합니다.
 
 ![Screen Shot 2020-06-05 at 3 34 57 PM](https://user-images.githubusercontent.com/13093517/83915925-352c5780-a742-11ea-975b-53d4e5d07e7c.png)
 
 
-Data uploaded into S3 is spread across multiple files and facilities. The files uploaded into S3 have an upper-bound of 5TB per file and the number of files that can be uploaded is virtually limitless. S3 buckets, which contain all files, are named in a universal namespace so uniqueness is required. All successful uploads will return an HTTP 200 response.
+S3에 업로드된 데이터는 여러 파일과 기능에 분산되어 있습니다. S3에 업로드되는 파일의 상한선은 파일당 5TB이며 업로드 가능한 파일 수는 사실상 제한이 없습니다. 모든 파일을 포함하는 S3 버킷은 범용 네임스페이스에서 이름이 지정되므로 고유성이 필요합니다. 업로드에 성공하면 HTTP 200 응답이 반환됩니다.
 
-### S3 Key Details:
-- Objects (regular files or directories) are stored in S3 with a key, value, version ID, and metadata. They can also contain torrents and sub resources for access control lists which are basically permissions for the object itself.
-- The data consistency model for S3 ensures immediate read access for new objects after the initial PUT requests. These new objects are introduced into AWS for the first time and thus do not need to be updated anywhere so they are available immediately.
-- The data consistency model for S3 also ensures immediate read access for PUTS and DELETES of already existing objects, <a href="https://aws.amazon.com/fr/about-aws/whats-new/2020/12/amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications/">since Decembre 2020</a>.
-- Amazon guarantees 99.999999999% (or 11 9s) durability for all S3 storage classes except its Reduced Redundancy Storage class.
-- S3 comes with the following main features:
+### S3 Key 세부사항:
+- 개체(일반 파일 또는 디렉토리)는 키, 값, 버전 ID 및 메타데이터와 함께 S3에 저장됩니다. 기본적으로 개체 자체에 대한 권한인 액세스 제어 목록에 대한 파일 및 하위 리소스를 포함할 수도 있습니다.
+- S3에 대한 데이터 일관성 모델은 초기 PUT 요청 후 새로운 객체에 대한 즉각적인 읽기 액세스를 보장합니다. 이 새로운 개체들은 AWS에 처음 도입되기 때문에 아무 곳에서나 업데이트할 필요가 없어 즉시 사용할 수 있습니다.
+- 또한 S3의 데이터 일관성 모델은 기존 객체의 PUT 및 삭제에 대한 즉각적인 읽기 액세스를 보장합니다. <a href="https://aws.amazon.com/fr/about-aws/whats-new/2020/12/amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications/">since Decembre 2020</a>.
+- Amazon은 RRS(Reduced Redundancy Storage) 클래스를 제외한 모든 S3 스토리지 클래스에 대해 99.999999999%(11 나인)의 내구성을 보장합니다.
+- S3는 다음과 같은 주요 기능을 제공합니다. : 
 
-  1.) tiered storage and pricing variability
+  1.) 계층형 스토리지 및 가격 변동성
 
-  2.) lifecycle management to expire older content
+  2.) 오래된 컨텐츠의 만료 시기에 대한 수명 주기 관리
 
-  3.) versioning for version control
+  3.) 버전 제어를 위한 버전 관리
 
-  4.) encryption for privacy
+  4.) 개인 정보 보호를 위한 암호화
 
-  5.) MFA deletes to prevent accidental or malicious removal of content
+  5.) 실수로 또는 악의적인 의도로의 콘텐츠 제거를 방지하기 위해 MFA 삭제
 
-  6.) access control lists & bucket policies to secure the data
+  6.) 액세스 제어 목록 & 데이터 보안을 위한 버킷 정책
 
-- S3 charges by:
+- S3 요금 부과 요소 :
 
-  1.) storage size
+  1.) 스토리지 크기
 
-  2.) number of requests
+  2.) 요청 수
 
-  3.) storage management pricing (known as tiers)
+  3.) 스토리지 관리 가격(티어)
 
-  4.) data transfer pricing (objects leaving/entering AWS via the internet)
+  4.) 데이터 전송 가격(인터넷을 통해 AWS를 나가거나 들어오는 객체)
 
-  5.) transfer acceleration (an optional speed increase for moving objects via Cloudfront)
+  5.) 전송 가속(Cloudfront를 통해 이동하는 물체의 속도 증가 옵션)
 
-  6.) cross region replication (more HA than offered by default
+  6.) 영역 간 복제(기본적으로 제공되는 것보다 많은 HA)
 
-- Bucket policies secure data at the bucket level while access control lists secure data at the more granular object level.
-- By default, all newly created buckets are private.
-- S3 can be configured to create access logs which can be shipped into another bucket in the current account or even a separate account all together. This makes it easy to monitor who accesses what inside S3.
-- There are 3 different ways to share S3 buckets across AWS accounts:
+- 버킷 정책은 버킷 수준에서 데이터를 보호하고 , 액세스 제어는 더 세부적인 개체 수준에서 보안 데이터를 나열합니다.
+- 기본적으로는, 새로 생성된 모든 버킷은 비공개입니다.
+- S3는 액세스 로그를 생성하도록 구성할 수 있으며, 이 로그는 현재 계정의 다른 버킷 또는 별도의 계정으로도 전송 될 수 있습니다. 이를 통해 S3 내부의 내용에 누가 접근하는지를 쉽게 모니터링할 수 있습니다.
+- AWS 계정에서 S3 버킷을 공유하는 방법에는 세 가지가 있습니다.
 
-  1.) For programmatic access only, use IAM & Bucket Policies to share entire buckets
+  1.) 프로그래밍 방식의 액세스로, IAM & 버킷 정책을 사용하여 전체 버킷을 공유합니다.
 
-  2.) For programmatic access only, use ACLs & Bucket Policies to share objects
+  2.) 프로그래밍 방식의 엑세스로, ACL & 버킷 정책을 사용하여 개체를 공유합니다.
 
-  3.) For access via the console & the terminal, use cross-account IAM roles
+  3.) 콘솔과 터미널을 통한 액세스로, 계정 간 IAM 역할을 사용합니다.
 
-- S3 is a great candidate for static website hosting. When you enable static website hosting for S3 you need both an index.html file and an error.html file. Static website hosting creates a website endpoint that can be accessed via the internet.
-- When you upload new files and have versioning enabled, they will not inherit the properties of the previous version. 
+- S3는 정적 웹사이트 호스팅의 좋은 선택지 입니다. S3에 대해 정적 웹 사이트 호스팅을 활성화하려면 index.html 파일(필수)과 error.html 파일(선택)이  필요합니다. 정적 웹 사이트 호스팅은 인터넷을 통해 액세스할 수 있는 웹 사이트 엣지를 만듭니다.
+- 새 파일을 업로드하고 버전 관리를 사용하도록 설정하면 해당 파일이 이전 버전의 속성을 상속하지 않습니다.
 
 ### S3 Storage Classes:
 **S3 Standard** - 99.99% availability and 11 9s durability. Data in this class is stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
