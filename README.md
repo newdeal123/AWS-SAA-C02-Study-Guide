@@ -188,7 +188,7 @@ IAM은 AWS 내에서 중앙 집중식 제어 허브를 제공하며 다른 모�
 
 IAM 정책은 IAM Identity가 아니기 때문에 위의 다른 요소들과 구분됩니다. 대신 해당 IAM Identity가 필요한 기능을 수행할 수 있도록 IAM Identity에 부착됩니다.
 
-### IAM Key 세부요소:
+### IAM 자세한 세부사항:
 
 - IAM은 리전에 국한되지 않는 글로벌 AWS 서비스입니다. 모든 사용자, 그룹, 역할 또는 정책에 전체적으로 액세스할 수 있습니다.
 
@@ -233,7 +233,7 @@ S3는 개발자와 IT 팀에 안전하고 내구성이 뛰어나며 확장성이
 
 S3에 업로드된 데이터는 여러 파일과 기능에 분산되어 있습니다. S3에 업로드되는 파일의 상한선은 파일당 5TB이며 업로드 가능한 파일 수는 사실상 제한이 없습니다. 모든 파일을 포함하는 S3 버킷은 범용 네임스페이스에서 이름이 지정되므로 고유성이 필요합니다. 업로드에 성공하면 HTTP 200 응답이 반환됩니다.
 
-### S3 Key 세부사항:
+### S3 자세한 세부사항:
 - 개체(일반 파일 또는 디렉토리)는 키, 값, 버전 ID 및 메타데이터와 함께 S3에 저장됩니다. 기본적으로 개체 자체에 대한 권한인 액세스 제어 목록에 대한 파일 및 하위 리소스를 포함할 수도 있습니다.
 - S3에 대한 데이터 일관성 모델은 초기 PUT 요청 후 새로운 객체에 대한 즉각적인 읽기 액세스를 보장합니다. 이 새로운 개체들은 AWS에 처음 도입되기 때문에 아무 곳에서나 업데이트할 필요가 없어 즉시 사용할 수 있습니다.
 - 또한 S3의 데이터 일관성 모델은 기존 객체의 PUT 및 삭제에 대한 즉각적인 읽기 액세스를 보장합니다. <a href="https://aws.amazon.com/fr/about-aws/whats-new/2020/12/amazon-s3-now-delivers-strong-read-after-write-consistency-automatically-for-all-applications/">since Decembre 2020</a>.
@@ -280,201 +280,200 @@ S3에 업로드된 데이터는 여러 파일과 기능에 분산되어 있습�
 - S3는 정적 웹사이트 호스팅의 좋은 선택지 입니다. S3에 대해 정적 웹 사이트 호스팅을 활성화하려면 index.html 파일(필수)과 error.html 파일(선택)이  필요합니다. 정적 웹 사이트 호스팅은 인터넷을 통해 액세스할 수 있는 웹 사이트 엣지를 만듭니다.
 - 새 파일을 업로드하고 버전 관리를 사용하도록 설정하면 해당 파일이 이전 버전의 속성을 상속하지 않습니다.
 
-### S3 Storage Classes:
-**S3 Standard** - 99.99% availability and 11 9s durability. Data in this class is stored redundantly across multiple devices in multiple facilities and is designed to withstand the failure of 2 concurrent data centers.
+### S3 스토리지 클래스:
+**S3 스탠다드** - 99.99%의 가용성과 11 나인의 내구성을 가집니다. 이 클래스의 데이터는 여러 장치에 걸쳐 여러 설비의 중복으로 저장되며, 동시에 2개의 데이터 센터의 장애를 견딜 수 있도록 설계되었습니다.
 
-**S3 Infrequently Accessed (IA)** - For data that is needed less often, but when it is needed the data should be available quickly. The storage fee is cheaper, but you are charged for retrieval.
+**S3 IA(Infrequently Accessed)** - 자주 필요하지는 않지만 필요할 때에 데이터를 신속하게 사용할 수 있어야 합니다. 보관료가 저렴하지만, 검색에 더 요금이 부과됩니다.
 
-**S3 One Zone Infrequently Accessed (an improvement of the legacy RRS / Reduced Redundancy Storage)** -  For when you want the lower costs of IA, but do not require high availability. This is even cheaper because of the lack of HA.
+**S3 One Zone IA** - IA의 낮은 비용을 원하지만 고가용성이 필요하지 않을 때를 위한 것입니다. 이것은 가용성이 부족하기 때문에 더 저렴합니다.
 
-**S3 Intelligent Tiering** - Uses built-in ML/AI to determine the most cost-effective storage class and then automatically moves your data to the appropriate tier. It does this without operational overhead or performance impact.
+**S3 Intelligent Tiering** - 내장된 ML/AI를 사용하여 가장 비용 효율적인 스토리지 클래스를 결정한 후 자동으로 데이터를 적절한 계층으로 이동합니다. 운영 오버헤드나 성능에 영향을 주지 않게 이 작업이 수행됩니다.
 
-**S3 Glacier** - low-cost storage class for data archiving. This class is for pure storage purposes where retrieval isn’t needed often at all. Retrieval times range from minutes to hours. There are differing retrieval methods depending on how acceptable the default retrieval times are for you:
+**S3 Glacier** - 데이터 보관을 위한 경제적인 스토리지 클래스입니다. 이 클래스는 회수할 필요가 거의 없는 순수 수납용입니다. 검색 시간은 분 단위에서 시간 단위까지 걸립니다. 기본 검색 시간이 얼마나 적합한지에 따라 다양한 검색 방법이 있습니다.
 
-    Expedited: 1 - 5 minutes, but this option is the most expensive.
-    Standard: 3 - 5 hours to restore.
-    Bulk: 5 - 12 hours. This option has the lowest cost and is good for a large set of data.
+    Expedited: 1 - 5 분, 하지만 이 옵션은 가장 비쌉니다.
+    Standard: 3 - 5 시간이 평균적으로 소요됩니다.
+    Bulk: 5 - 12 시간. 이 옵션은 비용이 가장 저렴하며 대규모 데이터 집합에 적합합니다.
 
-The Expedited duration listed above could possibly be longer during rare situations of unusually high demand across all of AWS. If it is absolutely critical to have quick access to your Glacier data under all circumstances, you must purchase *Provisioned Capacity*. Provisioned Capacity guarentees that Expedited retrievals always work within the time constraints of 1 to 5 minutes.
+위에 나열된 Expedited 기간은 AWS에서 드물게 비정상적으로 수요가 들어오는 상황에서 더 길어질 수 있습니다. 대부분의 상황에서 Glacier 데이터에 신속하게 액세스하는 것이 절대적으로 중요한 경우 *프로비저닝*된 용량을 구입해야 합니다. 프로비저닝된 용량은 Expedited 검색이 항상 1-5분이라는 시간 제약 내에서 작동함을 보장되게 해줍니다.
 
-**S3 Deep Glacier** - The lowest cost S3 storage where retrieval can take 12 hours.
+**S3 Deep Glacier** - 가장 비용이 적게 드는 S3 스토리지로 검색에는 12시간이 소요됩니다.
 
 <img width="1246" alt="storage_types" src="https://user-images.githubusercontent.com/13093517/83919060-e1247180-a747-11ea-9336-e92ee163ac7a.png">
 
-### S3 Encryption:
-S3 data can be encrypted both in transit and at rest.
+### S3 보안화:
+S3 데이터는 전송 중과 저장 상태 모두에서 암호화될 수 있습니다.
 
-**Encryption In Transit**: When the traffic passing between one endpoint to another is indecipherable. Anyone eavesdropping between server A and server B won’t be able to make sense of the information passing by. Encryption in transit for S3 is always achieved by SSL/TLS.
+**전송 중 보안화**: 엔드포인트로 전달되는 트래픽을 판독할 수 없는 경우. 서버 A와 서버 B 사이의 도청을 시도하는 사람은 지나가는 정보를 해독할 수 없을 것입니다. S3의 전송 중 암호화는 항상 SSL/TLS에 의해 수행됩니다.
 
-**Encryption At Rest**: When the immobile data sitting inside S3 is encrypted. If someone breaks into a server, they still won’t be able to access encrypted info within that server. Encryption at rest can be done either on the server-side or the client-side. The server-side is when S3 encrypts your data as it is being written to disk and decrypts it when you access it. The client-side is when you personally encrypt the object on your own and then upload it into S3 afterwards.
+**보관 중 보안화**: S3 안에 있는 데이터가 암호화되었을 때는, 서버에 엑세스한 경우에도 해당 서버 내의 암호화된 정보에 접근할 수 없게 됩니다. 보관 상태 암호화는 서버측 또는 클라이언트측에서 수행할 수 있습니다. 서버 쪽은 S3가 디스크에 기록 중인 데이터를 암호화하고 액세스 시 암호를 해독하는 것입니다. 클라이언트 쪽은 직접 객체를 암호화한 후 S3에 업로드하는 경우입니다.
 
-You can encrypted on the AWS supported server-side in the following ways:
-- **S3 Managed Keys / SSE - S3 (server side encryption S3 )** - when Amazon manages the encryption and decryption keys for you automatically. In this scenario, you concede a little control to Amazon in exchange for ease of use.
-- **AWS Key Management Service / SSE - KMS** - when Amazon and you both manage the encryption and decryption keys together.
-- **Server Side Encryption w/ customer provided keys / SSE - C** - when I give Amazon my own keys that I manage. In this scenario, you concede ease of use in exchange for more control.
+다음과 같은 방법으로 AWS는 암호화를 지원합니다.
+- **S3 관리형 키 / SSE - S3 (S3 서버측 보안화)** - 사용자 대신 암호화 및 암호 해독 키를 자동으로 관리합니다. 이 경우는 사용 편의성을 대가로 아마존에 약간의 통제권을 양보해야 합니다.
+- **AWS KMS(Key Management Service) / SSE - KMS** - 아마존과 사용자가 암호화 키와 암호 해독 키를 함께 관리합니다.
+- **서버측 보안화(SSE) w/ 사용자 관리형 키 / SSE - C** - 사용자가 관리하는 열쇠를 AWS에 제공합니다. 이 경우는 더 많은 제어 권한을 주는 대신 사용 편의성을 양보해야 합니다.
 
-### S3 Versioning:
-- When versioning is enabled, S3 stores all versions of an object including all writes and even deletes.
-- It is a great feature for implicitly backing up content and for easy rollbacks in case of human error.
-- It can be thought of as analogous to Git.
-- Once versioning is enabled on a bucket, it cannot be disabled - only suspended.
-- Versioning integrates w/ lifecycle rules so you can set rules to expire or migrate data based on their version.
-- Versioning also has MFA delete capability to provide an additional layer of security.
+### S3 버전관리:
+- 버전 관리를 사용하도록 설정하면 모든 쓰기 및 삭제를 포함하여 개체의 모든 버전이 S3에 저장됩니다.
+- 콘텐츠의 완전한 백업, 업로드 에러가 발생했을 때 손쉽게 롤백 등을 지원하는 훌륭한 기능입니다.
+- Git과 유사하다고 볼 수 있습니다.
+- 버킷에서 버전 관리를 사용하도록 설정한 후에는 사용하지 않도록 설정할 수는 없습니다.
+- 버전 관리에는 수명 주기 규칙이 통합되어 있으므로 만료 규칙을 설정하거나 버전을 기준으로 데이터를 마이그레이션할 수 있습니다.
+- 버전 관리에는 추가적인 보안 계층을 제공하기 위한 MFA 삭제 기능도 있습니다.
 
-### S3 Lifecycle Management:
-- Automates the moving of objects between the different storage tiers.
-- Can be used in conjunction with versioning.
-- Lifecycle rules can be applied to both current and previous versions of an object.
+### S3 수명 주기 규칙:
+- 서로 다른 스토리지 계층 간의 개체 이동을 자동화합니다.
+- 버전 관리와 함께 사용할 수 있습니다.
+- 수명 주기 규칙은 개체의 현재 버전과 이전 버전 모두에 적용할 수 있습니다.
 
-### S3 Cross Region Replication:
-- Cross region replication only work if versioning is enabled.
-- When cross region replication is enabled, no pre-existing data is transferred. Only new uploads into the original bucket are replicated. All subsequent updates are replicated.
-- When you replicate the contents of one bucket to another, you can actually change the ownership of the content if you want. You can also change the storage tier of the new bucket with the replicated content.
-- When files are deleted in the original bucket (via a delete marker as versioning prevents true deletions), those deletes are not replicated.
-- <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">Cross Region Replication Overview</a>
-- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">What is and isn’t replicated such as encrypted objects, deletes, items in glacier, etc.</a>
+### S3 크로스 리전 복제:
+- 크로스 리전 복제는 버전 관리가 사용 가능한 경우에만 작동합니다.
+- 크로스 리전 복제가 사용 가능하면 기존의 데이터는 전송되지 않습니다. 원래 버킷에 대한 새 업로드와 이후의 모든 업데이트만 복제됩니다.
+- 버킷의 내용을 다른 버킷으로 복제할 때 실제로 콘텐츠의 소유권을 변경할 수 있습니다. 복제된 콘텐츠를 사용하여 새 버킷의 스토리지 계층을 변경할 수도 있습니다.
+- 원본 버킷에서 파일이 삭제되면(버전 관리로 인해 실제 삭제가 불가능하므로 삭제 마커를 통해), 해당 삭제는 복제되지 않습니다.
+- <a href="https://aws.amazon.com/solutions/cross-region-replication-monitor/">크로스 리전 복제 개요</a>
+- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#replication-what-is-not-replicated ">암호화된 객체, 삭제된 파일, glacier의 항목 등과 같이 복제되거나 복제되지 않는 것?</a>
 
-### S3 Transfer Acceleration:
-- Transfer acceleration makes use of the CloudFront network by sending or receiving data at CDN points of presence (called edge locations) rather than slower uploads or downloads at the origin.
-- This is accomplished by uploading to a distinct URL for the edge location instead of the bucket itself. This is then transferred over the AWS network backbone at a much faster speed.
-- <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">You can test transfer acceleration speed directly in comparison to regular uploads.</a>
+### S3 Transfer Acceleration (전송 가속):
+- Transfer Acceleration은 원본에서 업로드와 다운로드의 속도가 느린 대신 CloudFront 네트워크를 활용해 CDN 위치(엣지 위치)에서 데이터를 전송하거나 수신합니다.
+- 이 작업은 버킷 자체 대신 엣지 위치에 대한 고유한 URL로 업로드하여 수행됩니다. 그런 다음 훨씬 더 빠른 속도로 AWS 네트워크 백본을 통해 전송됩니다.
+- <a href="https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html">일반적인 업로드와 비교하여 전송 가속 속도를 직접 테스트할 수 있습니다.</a>
 
-### S3 Event Notications:
-The Amazon S3 notification feature enables you to receive and send notifications when certain events happen in your bucket. To enable notifications, you must first configure the events you want Amazon S3 to publish (new object added, old object deleted, etc.) and the destinations where you want Amazon S3 to send the event notifications. Amazon S3 supports the following destinations where it can publish events:
-- **Amazon Simple Notification Service (Amazon SNS)** - A web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.
-- **Amazon Simple Queue Service (Amazon SQS)** - SQS offers reliable and scalable hosted queues for storing messages as they travel between computers.
-- **AWS Lambda** - AWS Lambda is a compute service where you can upload your code and the service can run the code on your behalf using the AWS infrastructure. You package up and upload your custom code to AWS Lambda when you create a Lambda function. The S3 event triggering the Lambda function also can serve as the code's input.
+### S3 이벤트 알림:
+Amazon S3 이벤트 알림 기능을 사용하면 버킷에서 특정 이벤트가 발생할 때 알림을 받고 보낼 수 있습니다. 알림을 사용하도록 설정하려면 먼저 Amazon S3에서 게시할 이벤트(새 개체 추가, 이전 개체 삭제 등)와 Amazon S3에서 이벤트 알림을 보낼 대상을 구성해야 합니다. Amazon S3는 이벤트를 게시할 수 있는 다음과 같은 대상을 지원합니다. :
+- **Amazon SNS(Simple Notification Service)** - SNS는 구독 엔드포인트 또는 클라이언트로의 메시지 전송을 조정하고 관리하는 웹 서비스입니다.
+- **Amazon SQS(Simple Queue Service)** - SQS는 컴퓨터 사이를 이동할 때 메시지를 저장하기 위한 신뢰할 수 있고 확장 가능한 호스트 큐를 제공합니다.
+- **AWS Lambda** - AWS 람다는 사용자가 코드를 업로드하고 서비스가 AWS 인프라를 사용하여 사용자 대신 코드를 실행할 수 있는 컴퓨팅 서비스입니다. 람다 함수를 만들 때 사용자 지정 코드를 패키지로 만들어 AWS 람다에 업로드합니다. 람다 함수를 트리거하는 S3 이벤트는 코드의 입력으로도 사용할 수 있습니다.
 
-###  S3 and ElasticSearch:
-- If you are using S3 to store log files, ElasticSearch provides full search capabilities for logs and can be used to search through data stored in an S3 bucket.
-- You can integrate your ElasticSearch domain with S3 and Lambda. In this setup, any new logs received by S3 will trigger an event notification to Lambda, which in turn will then run your application code on the new log data. After your code finishes processing, the data will be streamed into your ElasticSearch domain and be available for observation.
+###  S3 와 ElasticSearch:
+- S3을 사용하여 로그 파일을 저장하는 경우 ElasticSearch는 로그에 대한 전체 검색 기능을 제공하며 S3 버킷에 저장된 데이터를 검색하는 데 사용할 수 있습니다.
+- ElasticSearch 도메인을 S3 및 람다와 통합할 수 있습니다. 이 설정에서 S3가 수신하는 모든 새 로그는 람다에 대한 이벤트 알림을 트리거하며, 그러면 새 로그 데이터에 대한 응용 프로그램 코드가 실행됩니다. 코드 처리가 완료되면 데이터가 ElasticSearch 도메인으로 스트리밍되어 ElasticSearch에 사용할 수 있습니다.
 
-### Maximizing S3 Read/Write Performance:
-- If the request rate for reading and writing objects to S3 is extremely high, you can use sequential date-based naming for your prefixes to improve performance. Earlier versions of the AWS Docs also suggested to use hash keys or random strings to prefix the object's name.  In such cases, the partitions used to store the objects will be better distributed and therefore will allow better read/write performance on your objects. 
-- If your S3 data is receiving a high number of GET requests from users, you should consider using Amazon CloudFront for performance optimization. By integrating CloudFront with S3, you can distribute content via CloudFront's cache to your users for lower latency and a higher data transfer rate. This also has the added bonus of sending fewer direct requests to S3 which will reduce costs. For example, suppose that you have a few objects that are very popular. CloudFront fetches those objects from S3 and caches them. CloudFront can then serve future requests for the objects from its cache, reducing the total number of GET requests it sends to Amazon S3.
-- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html "> More information on how to ensure high performance in S3</a>
+### S3 읽기/쓰기 속도 최적화:
+- S3에 대한 객체 읽기 및 쓰기 요청 속도가 매우 높은 경우 접두사에 순차적 날짜 기반 이름을 사용하여 성능을 향상시킬 수 있습니다. 이전 버전의 AWS 설명서는 해시 키나 임의 문자열을 사용하여 개체 이름 앞에 붙일 것을 제안하기도 했습니다. 이러한 경우 개체를 저장하는 데 사용되는 파티션이 더 잘 분산되므로 개체에 대한 읽기/쓰기 성능이 향상됩니다.
+- S3 데이터가 사용자로부터 많은 수의 GET 요청을 받고 있다면 성능 최적화를 위해 Amazon CloudFront를 사용하는 것을 고려해야 합니다. CloudFront를 S3와 통합하면 CloudFront의 캐시를 통해 컨텐츠를 사용자에게 배포하여 대기 시간을 단축하고 데이터 전송 속도를 높일 수 있습니다. 이것은 또한 S3에 직접 요청을 적게 보내는 효과가 있어 비용을 절감할 수 있습니다. 예를 들어, 접근을 매우 많이 하는 개체가 몇 개 있다고 가정합니다. CloudFront는 S3에서 이러한 개체를 가져와 캐시합니다. 그런 다음 CloudFront는 캐시를 이용헤 개체에 대한 향후 요청을 처리할 수 있으므로 Amazon S3로 보내는 총 GET 요청 수가 줄어듭니다.
+- <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html "> S3에서 고성능을 보장하는 방법에 대해 알아보기</a>
 
-### S3 Server Access Logging:
-- Server access logging provides detailed records for the requests that are made to a bucket. Server access logs are useful for many applications. For example, access log information can be useful in security and access audits. It can also help you learn about your customer base and better understand your Amazon S3 bill. 
-- By default, logging is disabled. When logging is enabled, logs are saved to a bucket in the same AWS Region as the source bucket. 
-- Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and an error code, if relevant.
-- It works in the following way:
-   - S3 periodically collecting access log records of the bucket you want to monitor
-   - S3 then consolidates those records into log files
-   - S3 finally uploads the log files to your secondary monitoring bucket as log objects
+### S3 서버 엑세스 로깅 활성화:
+- 서버 액세스 기록은 버킷에 대한 요청에 대한 상세 레코드를 제공합니다. 서버 액세스 로그는 많은 응용 프로그램에 유용합니다. 예를 들어 액세스 로그 정보는 보안 및 액세스 검사에 유용할 수 있습니다. 또한 사용자의 고객층에 대해 배우고, AWS S3 결제 청구서를 더 잘 이해하는데 도움을 줄 수 있습니다.
+- 기본적으로 로깅은 실행 중지되어 있습니다. 로깅을 사용하도록 설정하면 로그가 소스 버킷과 동일한 AWS 영역에 있는 버킷에 저장됩니다.
+- 각 액세스 로그 레코드는 요청자, 버킷 이름, 요청 시간, 요청 작업, 응답 상태 및 관련된 경우 오류 코드와 같은 단일 액세스 요청에 대한 세부 정보를 제공합니다.
+- 다음과 같은 방식으로 작동합니다. :
+   - S3에서 모니터링할 버킷의 액세스 로그 레코드를 주기적으로 수집합니다.
+   - 그런 다음 S3는 이러한 레코드를 로그 파일로 통합합니다.
+   - S3는 마지막으로 로그 파일을 보조 모니터링 버킷에 로그 개체로 업로드합니다.
 
-### S3 Multipart Upload:
-- Multipart upload allows you to upload a single object as a set of parts. Each part is a contiguous portion of the object's data. You can upload these object parts independently and in any order. 
-- Multipart uploads are recommended for files over 100 MB and is *the only way* to upload files over 5 GB. It achieves functionality by uploading your data in parallel to boost efficiency.
-- If transmission of any part fails, you can retransmit that part without affecting other parts. After all parts of your object are uploaded, Amazon S3 assembles these parts and creates the object.
-- Possible reasons for why you would want to use Multipart upload:
-  - Multipart upload delivers the ability to begin an upload before you know the final object size.
-  - Multipart upload delivers improved throughput.
-  - Multipart upload delivers the ability to pause and resume object uploads.
-  - Multipart upload delivers quick recovery from network issues.
-- You can use an AWS SDK to upload an object in parts. Alternatively, you can perform the same action via the AWS CLI.
-- You can also parallelize downloads from S3 using **byte-range fetches**. If there's a failure during the download, the failure is localized just to the specific byte range and not the whole object.
+### S3 멀티파트 업로드:
+- 멀티파트 업로드를 통해 단일 객체를 여러 파트의 집합으로 업로드할 수 있습니다. 각 부분은 객체의 데이터의 연속적인 부분입니다. 이러한 개체 파트는 독립적으로 어떤 순서로든 업로드할 수 있습니다.
+- 멀티파트 업로드는 100MB 이상의 파일에 권장되며 5GB 이상의 파일을 업로드할 수 있는 *유일한 방법*입니다. 데이터를 병렬로 업로드하여 효율성을 높임으로써 기능을 달성합니다.
+- 파트 전송이 실패하면 다른 파트에 영향을 주지 않고 해당 파트를 재전송할 수 있습니다. 개체의 모든 부분이 업로드된 후, 아마존 S3는 이러한 파트 부분을 조립하여 개체를 만듭니다.
+- 멀티아트 업로드를 사용하려는 이유는 다음과 같습니다. :
+  - 멀티파트 업로드를 사용하면 최종 개체 크기를 알기도 전에 업로드를 시작할 수 있습니다.
+  - 멀티아트 업로드는 향상된 처리량을 제공합니다.
+  - 멀티파트 업로드를 통해 객체 업로드를 일시 중지 및 재개할 수 있습니다.
+  - 멀티파트 업로드는 네트워크 문제로부터 신속한 복구를 제공합니다.
+- AWS SDK를 사용하여 개체를 부분으로 업로드할 수 있습니다. 또는 AWS CLI를 통해 동일한 작업을 수행할 수 있습니다.
+- **바이트 범위 가져오기**를 사용하여 S3에서 다운로드를 병렬화할 수도 있습니다. 다운로드 중에 오류가 발생하면 장애는 전체 개체가 아닌 특정 바이트 범위에만 국한됩니다.
 
-### S3 Pre-signed URLs:
-- All S3 objects are private by default, however the object owner of a private bucket with private objects can optionally share those objects with without having to change the permissions of the bucket to be public.
-- This is done by creating a pre-signed URL. Using your own security credentials, you can grant time-limited permission to download or view your private S3 objects.
-- When you create a pre-signed URL for your S3 object, you must do the following:
-  - Provide your security credentials.
-  - Specify a bucket.
-  - Specify an object key.
-  - Specify the HTTP method (GET to download the object).
-  - Specify the expiration date and time.
+### S3 미리 서명된 URL:
+- 모든 S3 개체 및 버킷은 기본적으로 비공개지만 비공개 버킷의 소유자는 버킷의 사용 권한을 공개로 변경할 필요 없이 선택적으로 그러한 개체를 공유할 수 있습니다.
+- 이 작업은 미리 서명된 URL을 생성하여 수행됩니다. 자체 보안 자격 증명을 사용하여 개인 S3 개체를 다운로드하거나 볼 수 있는 제한된 사용 권한을 부여할 수 있습니다.
+- S3 개체에 대해 미리 서명된 URL을 생성하기 위해서 다음을 순서대로 수행해야 합니다. :
+  - 보안 자격 증명을 제공합니다.
+  - 버킷을 지정합니다.
+  - 객체 키를 지정합니다.
+  - HTTP 메서드를 지정합니다(객체를 다운로드 하기위해 GET 요청).
+  - 만료 날짜 및 시간을 지정합니다.
   
-- The pre-signed URLs are valid only for the specified duration and anyone who receives the pre-signed URL within that duration can then access the object.
-- The following diagram highlights how Pre-signed URLs work:
+- 미리 서명된 URL은 지정된 기간 동안만 유효하며 해당 기간 내에 미리 서명된 URL을 수신하는 모든 사용자는 개체에 액세스할 수 있습니다.
+- 다음 다이어그램에서는 사전 서명된 URL의 작동 방식을 보여 줍니다. :
 
 ![Screen Shot 2020-06-09 at 8 20 53 PM](https://user-images.githubusercontent.com/13093517/84213482-c6773300-aa8e-11ea-84a1-3c17e14197bc.png)
 
 ### S3 Select:
-- S3 Select is an Amazon S3 feature that is designed to pull out only the data you need from an object, which can dramatically improve the performance and reduce the cost of applications that need to access data in S3. 
-- Most applications have to retrieve the entire object and then filter out only the required data for further analysis. S3 Select enables applications to offload the heavy lifting of filtering and accessing data inside objects to the Amazon S3 service. 
-- As an example, let’s imagine you’re a developer at a large retailer and you need to analyze the weekly sales data from a single store, but the data for all 200 stores is saved in a new GZIP-ed CSV every day. 
-  - Without S3 Select, you would need to download, decompress and process the entire CSV to get the data you needed. 
-  - With S3 Select, you can use a simple SQL expression to return only the data from the store you’re interested in, instead of retrieving the entire object. 
-- By reducing the volume of data that has to be loaded and processed by your applications, S3 Select can improve the performance of most applications that frequently access data from S3 by up to 400% because you’re dealing with significantly less data.
-- You can also use S3 Select for Glacier.
+- S3 Select는 객체에서 필요한 데이터만 꺼내도록 설계된 아마존 S3 기능으로 S3에서 데이터에 액세스해야 하는 애플리케이션의 성능을 획기적으로 향상시키고 비용을 절감할 수 있습니다.
+- 대부분의 애플리케이션은 전체 객체를 검색한 다음 추가 분석을 위해 필요한 데이터만 필터링해야 합니다. S3 Select를 사용하면 애플리케이션이 객체 내부의 데이터를 필터링하고 액세스하는 많은 작업을 Amazon S3 서비스로 오프로드할 수 있습니다.
+- 예를 들어, 여러분이 대형 IT기업의 개발자이며 스토어들의 주간 판매 데이터를 분석해야 하고 200개 스토어 각각의 데이터가 매일 새로운 GZIP이 적용된 CSV에 저장된다고 가정해 보겠습니다.
+  - S3 Select를 사용하지 않으면 필요한 데이터를 얻으려면 전체 CSV를 다운로드, 압축 해제 및 처리해야 합니다.
+  - S3 Select에서는 전체 객체를 검색하는 대신 단순 SQL 식을 사용하여 관심 있는 저장소의 데이터만 반환할 수 있습니다.
+- S3 Select는 애플리케이션에서 로드 및 처리해야 하는 데이터 볼륨을 줄임으로써 데이터를 훨씬 적게 처리하기 때문에 S3의 데이터에 자주 액세스하는 대부분의 애플리케이션의 성능을 최대 400%까지 향상시킬 수 있습니다.
+- 또한 S3 Glacier에도 적용이 가능합니다.
 
 
 ## CloudFront
 
-### CloudFront Simplified:
-The AWS CDN service is called CloudFront. It serves up cached content and assets for the increased global performance of your application. The main components of CloudFront are the edge locations (cache endpoints), the origin (original source of truth to be cached such as an EC2 instance, an S3 bucket, an Elastic Load Balancer or a Route 53 config), and the distribution (the arrangement of edge locations from the origin or basically the network itself). <a href="https://aws.amazon.com/cloudfront/features/">More info on CloudFront's features</a>
+### CloudFront 요약:
+AWS CDN 서비스를 CloudFront라고 합니다. 애플리케이션의 글로벌 성능 향상을 위해 콘텐츠를 캐싱하여 제공합니다. CloudFront의 주요 구성 요소는 엣지 위치(캐시 엔드포인트), 오리진(EC2 인스턴스, S3 버킷, 로드 밸런서 또는 Route 53 config와 같은 캐시할 원본 소스) 및 배포(오리진 또는 기본적으로 네트워크 자체의 엣지 위치 배열)입니다. <a href="https://aws.amazon.com/cloudfront/features/">CloudFront의 기능에 대한 자세한 정보 알아보기</a>
 
-### CloudFront Key Details:
-- When content is cached, it is done for a certain time limit called the Time To Live, or TTL, which is always in seconds
-- If needed, CloudFront can serve up entire websites including dynamic, static, streaming and interactive content. 
-- Requests are always routed and cached in the nearest edge location for the user, thus propagating the CDN nodes and guaranteeing best performance for future requests.
-- There are two different types of distributions: 
-  - **Web Distribution**: web sites, normal cached items, etc
-  - **RTMP**: streaming content, adobe, etc
-- Edge locations are not just read only. They can be written to which will then return the write value back to the origin.
-- Cached content can be manually invalidated or cleared beyond the TTL, but this does incur a cost.
-- You can invalidate the distribution of certain objects or entire directories so that content is loaded directly from the origin every time. Invalidating content is also helpful when debugging if content pulled from the origin seems correct, but pulling that same content from an edge location seems incorrect.
-- You can set up a failover for the origin by creating an origin group with two origins inside. One origin will act as the primary and the other as the secondary. CloudFront will automatically switch between the two when the primary origin fails.
-- Amazon CloudFront delivers your content from each edge location and offers a Dedicated IP Custom SSL feature. SNI Custom SSL works with most modern browsers.
-- If you run PCI or HIPAA-compliant workloads and need to log usage data, you can do the following:
-    - Enable CloudFront access logs. 
-    - Capture requests that are sent to the CloudFront API.
-- An Origin Access Identity (OAI) is used for sharing private content via CloudFront. The OAI is a virtual user that will be used to give your CloudFront distribution permission to fetch a private object from your origin (e.g. S3 bucket).
+### CloudFront 자세한 세부사항:
+- 콘텐츠가 캐시에 저장되면 TTL(Time To Live)을 설정해 특정 제한시간 동안 수행됩니다. TTL은 항상 초 단위입니다.
+- 필요한 경우 CloudFront는 동적, 정적, 스트리밍 및 대화형 컨텐츠를 포함한 전체 웹 사이트를 지원할 수 있습니다.
+- 요청은 항상 사용자에게 가장 가까운 엣지 로케이션 라우팅되고 캐시되므로 CDN은 요청에 대한 최상의 성능을 보장합니다.
+- 베포에는 두 가지 유형이 있습니다. :
+  - **웹 배포**: 웹 사이트, 일반 캐시 항목 등
+  - **RTMP**: 스트리밍 콘텐츠, 어도비 등
+- 엣지 로케이션은 읽기 전용이 아니라 쓰여질 수도 있습니다. 그러면 쓰기 값이 콘텐츠의 최종 버전에 대한 소스로 지정된 오리진에 적용됩니다.
+- 캐시된 콘텐츠는 수동으로 무효화하거나 TTL 이상으로 지울 수 있지만 비용이 발생합니다.
+- 특정 개체 또는 전체 디렉토리의 배포를 무효화하여 매번 원본에서 직접 컨텐츠를 로드할 수 있습니다. 오리진에서 꺼낸 콘텐츠가 올바른 것처럼 보이지만 엣지 위치에서 동일한 콘텐츠를 꺼낸다면 콘텐츠를 무효화하는 것도 디버깅할 때 도움이 됩니다.
+- 오리진 내에 2개의 오리진(기본 오리진 및 보조 오리진)이 포함된 오리진 그룹을 만들어 오리진 장애조치를 설정할 수 있습니다. 한 오리진은 기본 오리진으로 작용하고 다른 오리진은 보조 오리진으로 작용합니다. 기본 오리진에 장애가 발생하면 CloudFront가 자동으로 둘 사이에서 전환됩니다.
+- Amazon CloudFront는 각 엣지 로케이션에서 컨텐츠를 제공하고 전용 IP Custom SSL 기능을 제공합니다. SNI Custom SSL은 대부분의 최신 브라우저에서 작동합니다.
+- PCI 또는 HIPAA 호환 워크로드를 실행하고 사용량 데이터를 기록해야 하는 경우 다음을 수행할 수 있습니다. :
+    - CloudFront의 액세스 로그를 사용하도록 설정합니다.
+    - CloudFront API로 전송되는 요청을 캡처합니다.
+- OAI(Origin Access Identity)는 CloudFront를 통해 private 컨텐츠를 공유하는 데 사용됩니다. OAI는 CloudFront 배포에서 오리진에서 개인 개체(예: S3 버킷)를 가져올 수 있는 권한을 부여하는 데 사용되는 가상 사용자입니다.
 
-### CloudFront Signed URLs and Signed Cookies:
-- CloudFront signed URLs and signed cookies provide the same basic functionality: they allow you to control who can access your content. These features exist because many companies that distribute content via the internet want to restrict access to documents, business data, media streams, or content that is intended for selected users. As an example, users who have paid a fee should be able to access private content that users on the free tier shouldn't. 
-- If you want to serve private content through CloudFront and you're trying to decide whether to use signed URLs or signed cookies, consider the following:
-  - Use signed URLs for the following cases:
-    - You want to use an RTMP distribution. Signed cookies aren't supported for RTMP distributions.
-    - You want to restrict access to individual files, for example, an installation download for your application.
-    - Your users are using a client (for example, a custom HTTP client) that doesn't support cookies.
-  - Use signed cookies for the following cases:
-    - You want to provide access to multiple restricted files. For example, all of the files for a video in HLS format or all of the files in the paid users' area of a website.
-    - You don't want to change your current URLs.
+### CloudFront 서명된 URL과 서명된 쿠키:
+- CloudFront의 서명된 URL과 서명된 쿠키는 컨텐츠에 액세스할 수 있는 사용자를 제어할 수 있는 동일한 기본 기능을 제공합니다. 이러한 기능은 인터넷을 통해 컨텐츠를 배포하는 많은 회사가 선택한 사용자를 대상으로 하는 문서, 비즈니스 데이터, 미디어 스트림 또는 컨텐츠에 대한 액세스를 제한하려고 하기 때문에 존재합니다. 예를 들어, 요금을 지불한 사용자는 무료 계층의 사용자가 접근해서는 안 되는 개인 콘텐츠에 접근할 수 있어야 합니다.
+- CloudFront를 통해 개인 컨텐츠를 서비스하고 서명된 URL 또는 서명된 쿠키를 사용할지 결정하려는 경우 다음을 고려할 수 있습니다. :
+  - 다음과 같은 경우는 서명된 URL을 사용합니다. :
+    - RTMP 분포를 사용하려고 합니다. 서명된 쿠키는 RTMP 배포를 지원되지 않습니다.
+    - 예를 들어, 응용 프로그램에 대한 설치 다운로드와 같은 개별 파일에 대한 액세스를 제한하려고 합니다.
+    - 사용자가 쿠키를 지원하지 않는 클라이언트(예: 사용자 정의 HTTP 클라이언트)를 사용하고 있습니다.
+  - 다음과 같은 경우는 서명된 쿠키를 사용합니다. :
+    - 제한된 여러 파일에 대한 액세스를 제공하고자 합니다. 예를 들어, HLS 형식의 비디오 또는 웹 사이트의 유료 사용자 영역에 있는 모든 파일 등.
+    - 현재 URL을 변경하지 않는 것이 좋을 때.
 
 ## Snowball
 
-### Snowball Simplified:
-Snowball is a giant physical disk that is used for migrating high quantities of data into AWS. It is a peta-byte scale data transport solution. Using a large disk like Snowball helps to circumvent common large scale data transfer problems such as high network costs, long transfer times, and security concerns. Snowballs are extremely secure by design and once the data transfer is complete, the snowballs are wiped clean of your data.
+### Snowball 요약:
+Snowball은 대량의 데이터를 거대한 물리적 디스크를 사용해 AWS로 마이그레이션하는 페타바이트 규모의 데이터 전송 솔루션입니다. Snowball과 같은 대형 디스크를 사용하면 높은 네트워크 비용, 긴 전송 시간 및 보안 문제와 같은 일반적인 대규모 데이터 전송 문제를 방지할 수 있습니다. Snowball은 설계상 매우 안전하며 데이터 전송이 완료되면 스노우볼의 데이터가 깨끗이 지워집니다.
 
-### Snowball Key Details:
-- Snowball is a strong choice for a data transfer job if you need a secure and quick data transfer ranging in the terabytes to many petabytes into AWS. 
-- Snowball can also be the right choice if you don’t want to make expensive upgrades to your existing network infrastructure, if you frequently experience large backlogs of data, if you're located in a physically isolated environment, or if you're in an area where high-speed internet connections are not available or cost-prohibitive.
-- As a rule of thumb, if it takes more than one week to upload your data to AWS using the spare capacity of your existing internet connection, then you should consider using Snowball. 
-- For example, if you have a 100 Mb connection that you can solely dedicate to transferring your data and you need to transfer 100 TB of data in total, it will take more than 100 days for the transfer to complete over that connection. You can make the same transfer in about a week by using multiple Snowballs.
-- Here is a reference for when Snowball should be considered based on the number of days it would take to make the same transfer over an internet connection:
+### Snowball 자세한 세부사항:
+- 안전하고 빠르게 테라바이트에서 수 페타바이트에 이르는 많은 데이터를 AWS로 전송하는 데에 필요한 경우 Snowball이 데이터 전송 작업에 강력한 선택입니다.
+- 기존 네트워크 인프라를 고가로 업그레이드하지 않으려는 경우, 대량의 데이터 백로그가 자주 발생하는 경우, 물리적으로 격리된 환경에 있는 경우, 고속 인터넷 연결을 사용할 수 없거나 비용이 많이 드는 지역에 있는 경우에도 Snowball이 올바른 선택이 될 수 있습니다.
+- 기존 인터넷 연결의 여유 용량을 이용해 AWS에 데이터를 업로드하는 데 일주일 이상 걸린다면 Snowball의 사용을 고려해야 합니다.
+- 예를 들어 데이터 전송 전용으로 사용할 수 있는 100MB 연결이 있고 총 100TB의 데이터를 전송해야 하는 경우 해당 연결을 통해 전송을 완료하는 데 100일 이상이 걸립니다. Snowball을 여러 개 사용하면 일주일 정도면 동일한 전송 작업이 가능합니다.
+- 다음은 인터넷 연결을 통해 동일한 전송을 수행하는 데 걸리는 일수에 따라 Snowball을 고려해야 하는 경우에 대한 참조입니다.
 
 ![Screen Shot 2020-06-07 at 10 53 22 PM](https://user-images.githubusercontent.com/13093517/83988618-c271d680-a911-11ea-9594-a82f690a786b.png)
 
-### Snowball Edge and Snowmobile:
-- Snowball Edge is a specific type of Snowball that comes with both compute *and* storage capabilities via AWS Lambda and specific EC2 instance types. This means you can run code within your snowball while your data is en route to an Amazon data center. This enables support of local workloads in remote or offline locations and as a result, Snowball Edge does not need to be limited to a data transfer service. An interesting use case is with airliners. Planes sometimes fly with snowball edges onboard so they can store large amounts of flight data and compute necessary functions for the plane’s own systems. Snowball Edges can also be clustered locally for even better performance.
-- Snowmobile is an exabyte-scale data transfer solution. It is a data transport solution for 100 petabytes of data and is contained within a 45-foot shipping container hauled by a semi-truck. This massive transfer makes sense if you want to move your entire data center with years of data into the cloud.
+### Snowball Edge 와 Snowmobile:
+- Snowball Edge는 AWS Lamda 및 특정 EC2 인스턴스 유형을 통해 컴퓨팅 *및* 스토리지 기능과 함께 제공되는 특정 유형의 Snowball입니다. 이것은 사용자의 데이터가 아마존 데이터 센터로 이동하는 동안 Snowball 안에서 코드를 실행할 수 있다는 것을 의미합니다. 이를 통해 원격 또는 오프라인 위치에서 로컬 워크로드를 지원할 수 있어 데이터 전송 서비스에 국한할 필요가 없게 됩니다. 흥미로운 사용 사례는 여객기에 있습니다. 비행기는 때때로 많은 양의 비행 데이터를 저장하고 비행기 자체 시스템에 필요한 함수를 계산할 수 있도록 Snowball Edge를 기내에 배치합니다. Snowball Edge는 더 나은 성능을 위해 로컬로 클러스터링할 수도 있습니다.
+- Snowmobile은 엑사바이트 규모의 데이터 전송 솔루션입니다. 그것은 100페타바이트의 데이터를 위한 데이터 전송 솔루션이며 반트럭이 운반하는 45피트 길이의 선적 컨테이너 안에 들어 있습니다. 다년간의 데이터가 포함된 전체 데이터 센터를 클라우드로 옮기려는 경우 이러한 대규모 전송이 가능합니다.
 
 ## Storage Gateway
 
-### Storage Gateway Simplified:
-Storage Gateway is a service that connects on-premise environments with cloud-based storage in order to seamlessly and securely integrate an on-prem application with a cloud storage backend. and Volume Gateway as a way of storing virtual hard disk drives in the cloud. 
+### Storage Gateway 요약:
+스토리지 게이트웨이는 온-프레미스 환경과 클라우드 스토리지 백엔드를 원활하고 안전하게 통합하기 위해 온-프레미스 환경을 클라우드 기반 스토리지와 연결하는 서비스입니다. 또한 클라우드에 가상 하드 디스크 드라이브를 저장하는 방법으로 볼륨 게이트웨이를 사용할 수 있습니다.
 
 
-### Storage Gateway Key Details:
-- The Storage Gateway service can either be a physical device or a VM image downloaded onto a host in an on-prem data center. It acts as a bridge to send or receive data from AWS.
-- Storage Gateway can sit on top of VMWare's ESXi hypervisor for Linux machines and Microsoft’s Hyper-V hypervisor for Windows machines.
-- The three types of Storage Gateways are below:
-  - **File Gateway** - Operates via NFS or SMB and is used to store files in S3 over a network filesystem mount point in the supplied virtual machine. Simply put, you can think of a File Gateway as a file system mount on S3.
-  - **Volume Gateway** - Operates via iSCSI and is used to store copies of hard disk drives or virtual hard disk drives in S3. These can be achieved via *Stored Volumes* or *Cached Volumes*. Simply put, you can think of Volume Gateway as a way of storing virtual hard disk drives in the cloud. 
-  - **Tape Gateway** - Operates as a Virtual Tape Library
-- Relevant file information passing through Storage Gateway like file ownership, permissions, timestamps, etc. are stored as metadata for the objects that they belong to. Once these file details are stored in S3, they can be managed natively. This mean all S3 features like versioning, lifecycle management, bucket policies, cross region replication, etc. can be applied as a part of Storage Gateway.
-- Applications interfacing with AWS over the Volume Gateway is done over the iSCSI block protocol. Data written to these volumes can be asynchronously backed up into AWS Elastic Block Store (EBS) as point-in-time snapshots of the volumes’ content. These kind of snapshots act as incremental backups that capture only changed state similar to a pull request in Git. Further, all snapshots are compressed to reduce storage costs.
-- Tape Gateway offers a durable, cost-effective way of archiving and replicating data into S3 while getting rid of tapes (old-school data storage). The Virtual Tape Library, or VTL, leverages existing tape-based backup infrastructure to store data on virtual tape cartridges that you create on the Tape Gateway. It’s a great way to modernize and move backups into the cloud.
+### Storage Gateway 자세한 세부사항:
+- AWS Storage Gateway는 파일 기반 파일 게이트웨이 (Amazon S3 파일 및 Amazon FSX 파일), 볼륨 기반 (캐시 및 저장) 및 테이프 기반 스토리지 솔루션을 제공합니다.
+- Storage Gateway의 세 가지 유형은 다음과 같습니다. :
+  - **파일 게이트웨이** - NFS(Network File System) 또는 SMB(Server Message Block)를 통해 작동하며 VMware ESXi 또는 Microsoft Hyper-V 또는 Linux 커널 기반 가상 머신(KVM) 하이퍼바이저에서 실행 중인 가상 머신(VM)으로 온프레미스 환경에 배포됩니다. 이 게이트웨이를 통해 파일 또는 파일 공유 탑재 지점으로 S3 내 객체에 액세스할 수 있습니다.간단히 말해 파일 게이트웨이는 S3에 마운트된 파일 시스템이라고 생각할 수 있습니다.
+  - **볼륨 게이트웨이** - iSCSI(Internet Small Computer System Interface)를 통해 작동하며 S3에 하드 디스크 드라이브 또는 가상 하드 디스크 드라이브의 복사본을 저장하는 데 사용됩니다. 이 작업은 *저장된 볼륨* 또는 *캐시된 볼륨*을 통해 수행할 수 있습니다. 간단히 말해, Volume Gateway는 클라우드에 가상 하드 Disk 드라이브를 저장하는 방식이라고 생각할 수 있습니다.
+  - **테이프 게이트웨이** - 가상 테이프 라이브러리로 작동합니다.
+- 파일 소유권, 사용 권한, 타임스탬프 등과 같이 Storage Gateway를 통과하는 관련 파일 정보는 해당 개체가 속한 개체의 메타데이터로 저장됩니다. 이러한 파일 세부 정보가 S3에 저장되면 기본적으로 관리할 수 있게 됩니다. 즉, 버전 관리, 라이프사이클 관리, 버킷 정책, 영역 간 복제 등과 같은 모든 S3 기능을 Storage Gateway의 일부로 적용할 수 있습니다.
+- 볼륨 게이트웨이를 통해 AWS와 통신하는 애플리케이션은 iSCSI 블록 프로토콜을 통해 수행됩니다. 이러한 볼륨에 기록된 데이터는 볼륨 콘텐츠의 시점 스냅샷으로 AWS EBS(Elastic Block Store)에 비동기식으로 백업할 수 있습니다. 이러한 종류의 스냅샷은 Git의 풀 요청과 유사한 변경된 상태만 캡처하는 백업 방식으로 작동합니다. 또한 스토리지 비용을 줄이기 위해 모든 스냅샷이 압축됩니다.
+- 테이프 게이트웨이는 테이프(구식 데이터 스토리지)를 없애면서도 데이터를 S3에 보관하고 복제할 수 있는 지속적이고 비용 효율적인 방법을 제공합니다. VTL(Virtual Tape Library)은 기존 테이프 기반 백업 인프라스트럭처를 활용하여 사용자가 테이프 게이트웨이에 생성한 가상 테이프 카트리지에 데이터를 저장합니다. 백업을 현대화하고 클라우드로 전환할 수 있는 훌륭한 방법입니다.
 
-### Stored Volumes vs. Cached Volumes:
-- Volume Gateway's **Stored Volumes** let you store data locally on-prem and backs the data up to AWS as a secondary data source. Stored Volumes allow low-latency access to entire datasets, while providing high availability over a hybrid cloud solution. Further, you can mount Stored Volumes on application infrastructure as iSCSI drives so when data is written to these volumes, the data is both written onto the on-prem hardware and asynchronously backed up as snapshots in AWS EBS or S3.
-  - In the following diagram of a Stored Volume architecture, data is served to the user from the Storage Area Network, Network Attached, or Direct Attached Storage within your data center. S3 exists just as a secure and reliable backup.
+### [볼륨 게이트웨이] 저장된 볼륨 vs. 캐시된 볼륨:
+- Volume Gateway의 **저장된 볼륨*을 사용하면 데이터를 사전에 로컬에 저장하고 보조 데이터 소스를 AWS에 백업할 수 있습니다. 저장된 볼륨을 사용하면 전체 데이터셋에 대한 지연 시간이 짧은 동시에 하이브리드 클라우드 솔루션을 통해 고가용성을 제공할 수 있습니다. 또한 애플리케이션 인프라에 저장된 볼륨을 iSCSI 드라이브로 마운트할 수 있습니다. 따라서 이러한 볼륨에 데이터를 쓸 때 데이터가 사전 하드웨어에 기록되고 AWS EBS 또는 S3에서 비동기식으로 스냅샷이 백업됩니다.
+  - 다음 저장된 볼륨 아키텍처 다이어그램에서는 데이터 센터 내의 Storage Area Network, Network Attached 또는 Direct Attached 스토리지에서 사용자에게 데이터가 제공되는 것을 보여줍니다. S3는 안전하고 안정적인 백업으로 존재합니다.
   - ![Screen Shot 2020-06-08 at 5 10 33 PM](https://user-images.githubusercontent.com/13093517/84080932-05cc5380-a9ab-11ea-8dd5-a80717b1b067.png)
 
-- Volume Gateway's **Cached Volumes** differ as they do not store the entire dataset locally like Stored Volumes. Instead, AWS is used as the primary data source and the local hardware is used as a caching layer. Only the most frequently used components are retained onto the on-prem infrastructure while the remaining data is served from AWS. This minimizes the need to scale on-prem infrastructure while still maintaining low-latency access to the most referenced data.
-  - In the following diagram of a Cached Volume architecture, the most frequently accessed data is served to the user from the Storage Area Network, Network Attached, or Direct Attached Storage within your data center. S3 serves the rest of the data from AWS.
+- Volume Gateway의 **캐시된 볼륨*은 전체 데이터 세트를 저장된 볼륨처럼 로컬에 모두 저장하지 않기 때문에 다릅니다. 대신 AWS가 주 데이터 소스로 사용되고 로컬 하드웨어가 캐싱 계층으로 사용됩니다. 가장 자주 사용되는 구성 요소만 온프리미엄 인프라에 유지되고 나머지 데이터는 AWS에서 제공되게 됩니다. 따라서 가장 많이 참조되는 데이터에 대한 짧은 지연 시간을 유지하면서도 사전 인프라를 확장할 필요가 최소화됩니다.
+  - 다음 캐시된 볼륨 아키텍처 다이어그램에서는 데이터 센터 내의 Storage Area Network, Network Attached 또는 Direct Attached 스토리지에서 가장 자주 액세스하는 데이터를 사용자에게 제공하는 것을 보여줍니다. S3는 AWS의 나머지 데이터를 제공합니다.
   - ![Screen Shot 2020-06-08 at 5 17 02 PM](https://user-images.githubusercontent.com/13093517/84081406-e5e95f80-a9ab-11ea-82d2-8bd1a53876ba.png)
 
 
